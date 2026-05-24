@@ -285,7 +285,7 @@ export default function NewFormulationPage() {
               </div>
             )}
 
-            <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 'var(--space-6)' }}>
+            <div className="wizard-actions" style={{ marginTop: 'var(--space-6)' }}>
               <button
                 className="btn btn-primary btn-lg"
                 disabled={!wizard.activeIngredient || !wizard.formulationName || !wizard.targetLoading}
@@ -408,7 +408,7 @@ export default function NewFormulationPage() {
               ))}
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 'var(--space-6)' }}>
+            <div className="wizard-actions" style={{ justifyContent: 'space-between', marginTop: 'var(--space-6)' }}>
               <button className="btn btn-secondary" onClick={() => setStep(1)}>
                 <ArrowLeft size={16} /> Back
               </button>
@@ -437,7 +437,7 @@ export default function NewFormulationPage() {
               </p>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 'var(--space-4)' }}>
+            <div className="grid-auto-cards">
               {wizard.surfactants.map((surf, index) => (
                 <div key={index} className="card" style={{ position: 'relative', overflow: 'hidden' }}>
                   <div style={{
@@ -481,7 +481,7 @@ export default function NewFormulationPage() {
               ))}
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 'var(--space-6)' }}>
+            <div className="wizard-actions" style={{ justifyContent: 'space-between', marginTop: 'var(--space-6)' }}>
               <button className="btn btn-secondary" onClick={() => setStep(2)}>
                 <ArrowLeft size={16} /> Back
               </button>
@@ -549,7 +549,7 @@ export default function NewFormulationPage() {
               })}
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 'var(--space-6)' }}>
+            <div className="wizard-actions" style={{ justifyContent: 'space-between', marginTop: 'var(--space-6)' }}>
               <button className="btn btn-secondary" onClick={() => setStep(3)}>
                 <ArrowLeft size={16} /> Back
               </button>
@@ -638,7 +638,7 @@ export default function NewFormulationPage() {
                     <h4 style={{ fontWeight: 700, marginBottom: 'var(--space-3)', color: 'var(--color-text-primary)' }}>
                       Expected Properties
                     </h4>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 'var(--space-3)' }}>
+                    <div className="grid-auto-cards">
                       {wizard.recipe.expected_properties.map((prop, i) => (
                         <div key={i} style={{
                           padding: 'var(--space-3)',
@@ -659,7 +659,7 @@ export default function NewFormulationPage() {
               </>
             )}
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 'var(--space-6)' }}>
+            <div className="wizard-actions" style={{ justifyContent: 'space-between', marginTop: 'var(--space-6)' }}>
               <button className="btn btn-secondary" onClick={() => setStep(4)}>
                 <ArrowLeft size={16} /> Back
               </button>
@@ -681,7 +681,7 @@ export default function NewFormulationPage() {
               </p>
 
               {/* Summary Grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 'var(--space-4)', marginBottom: 'var(--space-6)' }}>
+              <div className="grid-auto-cards" style={{ marginBottom: 'var(--space-6)' }}>
                 <div style={{ padding: 'var(--space-4)', background: 'var(--color-bg-tertiary)', borderRadius: 'var(--radius-lg)' }}>
                   <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-tertiary)', marginBottom: 4 }}>Name</div>
                   <div style={{ fontWeight: 700, color: 'var(--color-text-primary)' }}>{wizard.formulationName}</div>
@@ -714,7 +714,7 @@ export default function NewFormulationPage() {
               </div>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 'var(--space-6)' }}>
+            <div className="wizard-actions" style={{ justifyContent: 'space-between', marginTop: 'var(--space-6)' }}>
               <button className="btn btn-secondary" onClick={() => setStep(5)}>
                 <ArrowLeft size={16} /> Back
               </button>

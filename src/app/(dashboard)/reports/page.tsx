@@ -90,6 +90,8 @@ export default function ReportsPage() {
         </div>
       ) : (
         <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
+          <p className="table-scroll-hint" style={{ padding: '12px 16px 0' }}>Swipe left to see more →</p>
+          <div className="table-scroll">
           <table className="data-table">
             <thead>
               <tr>
@@ -134,6 +136,7 @@ export default function ReportsPage() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       )}
     </div>
