@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useAuth } from '@/hooks/useAuth';
 import { NAV_ITEMS } from '@/lib/constants';
 import { LegalDisclaimer } from '@/components/LegalDisclaimer';
+import { MobileBottomNav } from '@/components/MobileBottomNav';
 import {
   LayoutDashboard,
   FlaskConical,
@@ -42,6 +43,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       router.push('/login');
     }
   }, [isLoading, isAuthenticated, router]);
+
+  useEffect(() => {
+    setSidebarOpen(false);
+    setUserMenuOpen(false);
+  }, [pathname]);
 
   if (isLoading) {
     return (
@@ -80,7 +86,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   return (
     <div>
       {/* Sidebar */}
-      <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
+      <aside className={`sidebar${sidebarOpen ? ' open' : ''}`} aria-label="Sidebar navigation">
         <div className="sidebar-logo">
           <div className="sidebar-logo-icon">F</div>
           <div className="sidebar-logo-text">
@@ -114,22 +120,16 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <header className="topbar">
         <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)' }}>
           <button
-            className="btn btn-icon btn-ghost"
+            type="button"
+            className="btn btn-icon btn-ghost mobile-menu-btn"
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            style={{ display: 'none' }}
-            id="mobile-menu-toggle"
+            aria-label={sidebarOpen ? 'Close menu' : 'Open menu'}
           >
-            {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
+            {sidebarOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
-          <style>{`
-            @media (max-width: 768px) {
-              #mobile-menu-toggle { display: flex !important; }
-            }
-          `}</style>
-          <div>
-            <div className="topbar-title">
-              {org?.name || 'My Workspace'}
-            </div>
+          <div className="topbar-title-wrap">
+            <div className="topbar-title">{org?.name || 'My Workspace'}</div>
+            <div className="topbar-subtitle">FormuLab</div>
           </div>
         </div>
 
@@ -142,11 +142,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <div className="topbar-avatar">
                 {user?.name ? getInitials(user.name) : '?'}
               </div>
-              <div className="topbar-user-info">
+              <div className="topbar-user-info hide-mobile">
                 <span className="topbar-user-name">{user?.name || 'User'}</span>
                 <span className="topbar-user-role">Scientist</span>
               </div>
-              <ChevronDown size={14} style={{ color: 'var(--color-text-muted)' }} />
+              <ChevronDown size={14} className="hide-mobile" style={{ color: 'var(--color-text-muted)' }} />
             </div>
 
             {userMenuOpen && (
@@ -155,19 +155,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   style={{ position: 'fixed', inset: 0, zIndex: 50 }}
                   onClick={() => setUserMenuOpen(false)}
                 />
-                <div style={{
-                  position: 'absolute',
-                  right: 0,
-                  top: 'calc(100% + 8px)',
-                  width: 200,
-                  background: 'var(--color-bg-secondary)',
-                  border: '1px solid var(--color-border)',
-                  borderRadius: 'var(--radius-lg)',
-                  boxShadow: 'var(--shadow-lg)',
-                  zIndex: 51,
-                  overflow: 'hidden',
-                  animation: 'fadeIn 0.15s ease-out',
-                }}>
+                <div className="topbar-dropdown">
                   <Link
                     href="/settings"
                     className="sidebar-nav-item"
@@ -192,30 +180,18 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
       {/* Overlay for mobile sidebar */}
       {sidebarOpen && (
-        <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            background: 'var(--color-bg-overlay)',
-            zIndex: 99,
-            display: 'none',
-          }}
+        <button
+          type="button"
           className="sidebar-overlay"
+          aria-label="Close menu"
           onClick={() => setSidebarOpen(false)}
         />
       )}
-      <style>{`
-        @media (max-width: 768px) {
-          .sidebar-overlay { display: block !important; }
-        }
-      `}</style>
 
-      {/* Main Content */}
-      <main className="main-content">
-        <div className="page-content">
-          {children}
-        </div>
+      <main className="main-content has-mobile-nav">
+        <div className="page-content">{children}</div>
       </main>
+      <MobileBottomNav />
       <LegalDisclaimer />
     </div>
   );

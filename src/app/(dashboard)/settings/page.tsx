@@ -191,7 +191,7 @@ export default function SettingsPage() {
         </div>
       )}
 
-      <div style={{ display: 'grid', gridTemplateColumns: '240px 1fr', gap: 'var(--space-6)' }}>
+      <div className="settings-layout">
         <div className="card" style={{ padding: 'var(--space-3)', height: 'fit-content' }}>
           {sections.map((section) => (
             <button

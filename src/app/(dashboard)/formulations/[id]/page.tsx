@@ -189,7 +189,7 @@ export default function FormulationDetailPage() {
             <div className="card">
               <h4 className="card-title" style={{ marginBottom: 'var(--space-4)' }}>Active Ingredient</h4>
               {ingredient ? (
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-3)' }}>
+                <div className="grid-2">
                   {[
                     ['Name', ingredient.name],
                     ['CAS', ingredient.cas_number],
@@ -264,7 +264,7 @@ export default function FormulationDetailPage() {
         )}
 
         {activeTab === 'surfactants' && (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 'var(--space-4)' }}>
+          <div className="grid-auto-cards">
             {surfactants.map((surf, i) => (
               <div key={i} className="card">
                 <div style={{ fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: 4 }}>{surf.category}</div>

@@ -14,25 +14,7 @@ export function LegalDisclaimer() {
   if (!visible) return null;
 
   return (
-    <div
-      role="alert"
-      style={{
-        position: 'fixed',
-        bottom: 16,
-        left: '50%',
-        transform: 'translateX(-50%)',
-        zIndex: 1200,
-        maxWidth: 720,
-        width: 'calc(100% - 32px)',
-        padding: '14px 16px',
-        background: 'var(--color-surface)',
-        border: '1px solid var(--color-border-hover)',
-        borderRadius: 'var(--radius-lg)',
-        boxShadow: 'var(--shadow-xl)',
-        fontSize: 'var(--text-sm)',
-        color: 'var(--color-text-secondary)',
-      }}
-    >
+    <div className="legal-disclaimer" role="alert">
       <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
         <AlertTriangle size={18} color="var(--color-warning)" style={{ flexShrink: 0, marginTop: 2 }} />
         <div style={{ flex: 1 }}>
